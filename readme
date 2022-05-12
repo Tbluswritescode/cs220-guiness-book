@@ -1,0 +1,9 @@
+This program is designed to be used as follows:
+- users create authors and add their books, 
+- when an author is complete that author is added to the guiness book, 
+- if an author input in the book breaks the record it will be updated 
+- if that author does not break the record they will be ignored by the guinessbook.
+
+The Author class can contain books, has to string methods, a name.  This needed to be a standalone class to ensure authors with the same name could be collected by the guiness book and still be treated as unique.  
+
+The guinessbook class manages authors, attempts to take them as input, and if they break a record, updates the record based on the author data.  It specifically does not store authors, only the record data.

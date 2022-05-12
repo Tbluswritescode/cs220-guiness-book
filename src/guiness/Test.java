@@ -1,6 +1,12 @@
 package guiness;
 
 public class Test {
+    /*
+     * This program is designed to be used as follows users create authors and add
+     * their books, when an author is complete that author is added to the guiness
+     * book, if they break the record it will be updated if that author does not
+     * break the record they will be ignored by the guinessbook.
+     */
 
     public static void main(String[] args) {
         // Instantiate the guinessbook
@@ -25,6 +31,8 @@ public class Test {
         } else {
             System.out.println("Record holder remains \n " + book.currentRecord());
         }
+
+        // System.out.println(a.toStringAll());
 
         // OUTDATED CODE USED FOR AUTHOR TESTING
         // for (Author z : book.getAuthors()) {

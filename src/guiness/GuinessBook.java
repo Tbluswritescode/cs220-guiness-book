@@ -10,15 +10,12 @@ public class guinessbook {
     private int recordCount = 23;
     private int recordYear = 1976;
 
-    // Set of authors entered
-    private Set<Author> authors;
-
     public guinessbook() {
-        authors = new HashSet<Author>();
-
     }
 
     public boolean addAuthor(Author author) {
+        // Author is checked against the record, if they break it the new record is set,
+        // if not the author is effectively ignored.
         if (author.getBestCount() > recordCount) {
             SetRecord(author);
             return true;
@@ -27,12 +24,16 @@ public class guinessbook {
     }
 
     public void SetRecord(Author a) {
+        // Sets all of the record details if an update is needed
+
         recordCount = a.getBestCount();
         recordYear = a.getBestYear();
         recordHolder = a.getName();
     }
 
     public String currentRecord() {
+        // Returns a string format of the current record holder data
+
         String rs = "Current Record:\n";
         rs += "\nRecord Author : " + recordHolder;
         rs += "\nRecord Year : " + recordYear;
@@ -40,7 +41,8 @@ public class guinessbook {
         return rs;
     }
 
-    public Set<Author> getAuthors() {
-        return authors;
-    }
+    // OUTDATED CODE FROM WHEN ALL AUTHORS STORED
+    // public Set<Author> getAuthors() {
+    // return authors;
+    // }
 }
