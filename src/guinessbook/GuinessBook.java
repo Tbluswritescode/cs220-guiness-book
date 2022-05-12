@@ -1,4 +1,10 @@
-public class guinessbook {
+package guinessbook;
+
+import java.util.Set;
+import java.util.HashSet;
+import java.util.Map;
+
+public class GuinessBook {
     private String recordHolder = "Barbara Cartland";
     private int recordCount = 23;
     private int recordYear = 1976;
@@ -14,7 +20,7 @@ public class guinessbook {
         authors.add(author);
     }
 
-    public boolean updateRecord() {
+    public boolean isNewRecord() {
         for (Author a : authors) {
             Map.Entry<Integer, Integer> m = a.getHighestCount();
             if (m.getValue() > recordCount) {
