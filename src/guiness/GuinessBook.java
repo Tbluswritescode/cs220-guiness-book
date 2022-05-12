@@ -42,4 +42,8 @@ public class guinessbook {
         rs += "\nRecord Count : " + recordCount;
         return rs;
     }
+
+    public Set<Author> getAuthors() {
+        return authors;
+    }
 }

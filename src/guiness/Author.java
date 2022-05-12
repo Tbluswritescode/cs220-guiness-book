@@ -44,10 +44,8 @@ public class Author {
     public Map.Entry<Integer, Integer> getHighestCount() {
         Map.Entry<Integer, Integer> maxEntry = null;
         for (Map.Entry<Integer, Integer> entry : booksByYear.entrySet()) {
-            System.out.println(entry);
             if (maxEntry == null || entry.getValue().compareTo(maxEntry.getValue()) > 0) {
                 maxEntry = entry;
-                System.out.println(maxEntry);
             }
         }
         bestYear = maxEntry;
@@ -66,7 +64,7 @@ public class Author {
     public String toStringSummary() {
         getHighestCount();
         String rs = Name;
-        rs += bestYear.getKey() + " -- " + bestYear.getValue();
+        rs += ":     " + bestYear.getKey() + " -- " + bestYear.getValue();
         return rs;
     }
 }

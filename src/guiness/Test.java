@@ -26,8 +26,9 @@ public class Test {
             System.out.println("Record holder remains \n " + book.currentRecord());
         }
 
-        System.out.println(a.toStringAll());
-        // System.out.println(a.toStringSummary());
+        for (Author z : book.getAuthors()) {
+            System.out.println(z.toStringSummary());
+        }
 
         return;
     }
