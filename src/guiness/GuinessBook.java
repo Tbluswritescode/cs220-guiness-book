@@ -5,10 +5,12 @@ import java.util.HashSet;
 import java.util.Map;
 
 public class guinessbook {
+    // Record Variables
     private String recordHolder = "Barbara Cartland";
     private int recordCount = 23;
     private int recordYear = 1976;
 
+    // Set of authors entered
     private Set<Author> authors;
 
     public guinessbook() {
@@ -16,22 +18,18 @@ public class guinessbook {
 
     }
 
-    public void addAuthor(Author author) {
-        authors.add(author);
-    }
-
-    public boolean isNewRecord() {
-        for (Author a : authors) {
-            if (a.getBestCount() > recordCount) {
-                recordCount = a.getBestCount();
-                recordYear = a.getBestYear();
-                recordHolder = a.getName();
-                return true;
-            } else {
-                authors.remove(a);
-            }
+    public boolean addAuthor(Author author) {
+        if (author.getBestCount() > recordCount) {
+            SetRecord(author);
+            return true;
         }
         return false;
+    }
+
+    public void SetRecord(Author a) {
+        recordCount = a.getBestCount();
+        recordYear = a.getBestYear();
+        recordHolder = a.getName();
     }
 
     public String currentRecord() {
