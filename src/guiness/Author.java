@@ -2,17 +2,17 @@ package guiness;
 
 import java.util.Map;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Author {
 
     private String Name = "";
-    private Map<Integer, Integer> booksByYear;
-    private Map<String, Integer> books;
-    private Map.Entry<Integer, Integer> bestYear;
+    private Map<Integer, Set<String>> booksByYear;
+    private Map.Entry<Integer, Set<String>> bestYear;
 
     public Author(String name) {
-        booksByYear = new HashMap<Integer, Integer>();
-        books = new HashMap<String, Integer>();
+        booksByYear = new HashMap<Integer, Set<String>>();
         bestYear = null;
         Name = name;
     }
@@ -22,18 +22,12 @@ public class Author {
     }
 
     public void addBook(String title, int year) {
-        if (!books.containsKey(title)) {
-            books.put(title, year);
-        }
-        updateCount(year);
-    }
-
-    public void updateCount(int year) {
         if (!booksByYear.containsKey(year)) {
-            booksByYear.put(year, 1);
+            Set<String> s = new HashSet<String>();
+            s.add(title);
+            booksByYear.put(year, s);
         } else {
-            booksByYear.replace(year, booksByYear.get(year) + 1);
-            System.out.println(booksByYear.get(year));
+            booksByYear.get(year).add(title);
         }
     }
 
@@ -41,15 +35,24 @@ public class Author {
         return booksByYear;
     }
 
-    public Map.Entry<Integer, Integer> getHighestCount() {
-        Map.Entry<Integer, Integer> maxEntry = null;
-        for (Map.Entry<Integer, Integer> entry : booksByYear.entrySet()) {
-            if (maxEntry == null || entry.getValue().compareTo(maxEntry.getValue()) > 0) {
+    public int getBestYear() {
+        updateHighestCount();
+        return bestYear.getKey();
+    }
+
+    public int getBestCount() {
+        updateHighestCount();
+        return bestYear.getValue().size();
+    }
+
+    private void updateHighestCount() {
+        Map.Entry<Integer, Set<String>> maxEntry = null;
+        for (Map.Entry<Integer, Set<String>> entry : booksByYear.entrySet()) {
+            if (maxEntry == null || entry.getValue().size() > maxEntry.getValue().size()) {
                 maxEntry = entry;
             }
         }
         bestYear = maxEntry;
-        return maxEntry;
     }
 
     public String toStringAll() {
@@ -62,9 +65,9 @@ public class Author {
     }
 
     public String toStringSummary() {
-        getHighestCount();
+        updateHighestCount();
         String rs = Name;
-        rs += ":     " + bestYear.getKey() + " -- " + bestYear.getValue();
+        rs += ":     " + bestYear.getKey() + " -- " + bestYear.getValue().size();
         return rs;
     }
 }

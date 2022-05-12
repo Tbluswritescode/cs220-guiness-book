@@ -22,14 +22,13 @@ public class guinessbook {
 
     public boolean isNewRecord() {
         for (Author a : authors) {
-            Map.Entry<Integer, Integer> m = a.getHighestCount();
-            if (m != null) {
-                if (m.getValue() > recordCount) {
-                    recordCount = m.getValue();
-                    recordYear = m.getKey();
-                    recordHolder = a.getName();
-                    return true;
-                }
+            if (a.getBestCount() > recordCount) {
+                recordCount = a.getBestCount();
+                recordYear = a.getBestYear();
+                recordHolder = a.getName();
+                return true;
+            } else {
+                authors.remove(a);
             }
         }
         return false;
